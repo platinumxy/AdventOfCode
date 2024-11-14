@@ -1,0 +1,4 @@
+(library
+ (name AoC23)
+ (modules D1)
+ (wrapped false))

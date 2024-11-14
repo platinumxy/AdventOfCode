@@ -1,0 +1,4 @@
+(executable
+ (public_name AoC23)
+ (name main)
+ (libraries AoC23))
