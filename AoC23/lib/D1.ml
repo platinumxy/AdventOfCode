@@ -1,21 +1,6 @@
 let day_one_file = "./files/day1.txt"
 
-let read_lines (pth : string) : string list =
-  let ic = try Some (open_in pth) with _ -> None in
-  match ic with
-  | None ->
-      print_endline "Failed to read file";
-      exit 1
-  | Some f ->
-      let rec read_lines_aux acc =
-        try
-          let line = input_line f in
-          read_lines_aux (line :: acc)
-        with End_of_file ->
-          close_in f;
-          List.rev acc
-      in
-      read_lines_aux []
+
     
 let int_map = function  
   | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" as c -> Some c
@@ -56,7 +41,7 @@ let parse_string (parse_func: string -> string option) (s: string) : int =
       let last = find_last !out in
       int_of_string (last ^ first) (*why is ocmal like this?*)
 
-let lines = read_lines day_one_file
+let lines = Common.read_lines day_one_file
 let solution_one = List.fold_left (+) 0 (List.map (parse_string int_map) lines)
 let solution_two = List.fold_left (+) 0 (List.map (parse_string full_string_map) lines) 
 
