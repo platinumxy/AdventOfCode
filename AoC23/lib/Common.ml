@@ -30,3 +30,9 @@ let show_day_ints (day : int) (sol_one : int) (sol_two : int) =
 let sdi (day: int) (sol : int) =
   Printf.printf "\n============ Day %d =============\n> Solution One: %d\n"
     day sol 
+
+
+exception Failure of string 
+let err str = raise (Failure str)
+let todo () = err "TODO"
+let invalid () = err "Invalid state"

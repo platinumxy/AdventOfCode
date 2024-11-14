@@ -1,4 +1,5 @@
 (library
  (name AoC23)
- (modules D1 Common)
+ (modules Common D1 D2)
+ (libraries str)
  (wrapped false))
