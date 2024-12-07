@@ -1,4 +1,4 @@
-from lib import D1, D2, D3, D4, D5, D6
+from lib import D1, D2, D3, D4, D5, D6, D7
 
 if __name__ == "__main__":
     print("Happy christmas everyone!!!")
@@ -9,3 +9,4 @@ if __name__ == "__main__":
     D4.solve_day()
     D5.solve_day()
     D6.solve_day()
+    D7.solve_day()
