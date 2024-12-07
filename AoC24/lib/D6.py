@@ -72,10 +72,11 @@ def part_2(grid: gridT, solved: gridT) -> int:
         if not is_escapeable(gd, starting_x, starting_y, starting_state): loops += 1
     return loops
 
-def solve():
+def solve_day():
     print("=== DAY 6 ===")
     part1, solved = part_1(gen_grid())
     print(f"Part 1: {part1}")
     print(f"Part 2: {part_2(gen_grid(), solved)}")
 
-solve()
+if __name__ == "__main__": 
+    solve_day()

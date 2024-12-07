@@ -42,6 +42,11 @@ def fix_invalid(rules: dict[str, dict[str,list[str]]], l:list[str]) -> list[str]
 def calc_val(l: list[any]) -> int:
     return sum(map(lambda l: int(l[len(l)//2]), l))
 
-__rules, UPDATES = parse_input()
-RULES = gen_rules(__rules)
-print("=== Day 5: ===\nPart One:", calc_val(gen_valid_updates()), "\nPart Two:", calc_val(gen_invalid_updates())) 
+def solve_day():
+    global RULES, UPDATES
+    __rules, UPDATES = parse_input()
+    RULES = gen_rules(__rules)
+    print("=== Day 5: ===\nPart One:", calc_val(gen_valid_updates()), "\nPart Two:", calc_val(gen_invalid_updates())) 
+
+if __name__ == "__main__": 
+    solve_day()

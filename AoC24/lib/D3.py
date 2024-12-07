@@ -40,4 +40,8 @@ def get_all_controled_muls_sum() -> int:
                 active = False
     return sum
 
-print(f"=== Day three ===\nPart One: {get_all_muls_sum()}\nPart Two: {get_all_controled_muls_sum()}")
+def solve_day():
+    print(f"=== Day three ===\nPart One: {get_all_muls_sum()}\nPart Two: {get_all_controled_muls_sum()}")
+
+if __name__ == "__main__": 
+    solve_day()

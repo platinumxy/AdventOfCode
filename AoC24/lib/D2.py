@@ -17,7 +17,11 @@ def valid_report(arr: list[int]) -> bool:
 def dampened_check(arr: list[int]) -> bool:
     return valid_report(arr) or any(valid_report(arr[:i] + arr[i+1:]) for i in range(len(arr)))
 
-valid_count = len(list(filter(valid_report, get_reports())))
-valid_dampened_count = len(list(filter(dampened_check, get_reports())))
+def solve_day():
+    valid_count = len(list(filter(valid_report, get_reports())))
+    valid_dampened_count = len(list(filter(dampened_check, get_reports())))
 
-print(f"=== Day two ===\nPart One: {valid_count}\nPart Two: {valid_dampened_count}")
+    print(f"=== Day two ===\nPart One: {valid_count}\nPart Two: {valid_dampened_count}")
+
+if __name__ == "__main__":
+    solve_day()
