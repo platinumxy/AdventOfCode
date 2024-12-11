@@ -21,10 +21,16 @@ def can_sys_be_solved(target: int, values: list[int], op_types:list[str]) -> boo
         reduce(lambda acc, val_op: apply_op(acc, val_op[1], val_op[0]), zip(values[1:], ops), values[0])
     return any(evaluate_expression(ops, values) == target for ops in list(product(op_types, repeat=len(values)-1)))
 
+def part1() -> int:
+    return sum(target for target, values in load_systems() if can_sys_be_solved(target, values, ["+", "*"]))
+
+def part2() -> int:
+    return sum(target for target, values in load_systems() if can_sys_be_solved(target, values, ["+", "*", "||"]))
+
 def solve_day():
-    print("=== Day 7 ===")
-    print(f"Part 1: {sum(target for target, values in load_systems() if can_sys_be_solved(target, values, ["+", "*"]))}")
-    print(f"Part 2: {sum(target for target, values in load_systems() if can_sys_be_solved(target, values, ["+", "*", "||"]))}")
+    print("===== Day 07 =====")
+    print(f"Part 1: {part1()}")
+    print(f"Part 2: {part2()}")
 
 if __name__ == "__main__":
     solve_day()

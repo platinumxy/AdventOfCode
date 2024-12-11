@@ -29,10 +29,14 @@ def blinks(stones: list[int], n: int) -> dict[int,int]:
 def slv(n: int) -> int:
     return sum(map(lambda kv: kv[1], blinks(load_stones(), n).items()))
 
+def part1() -> int: return slv(25)
+def part2() -> int: return slv(75)
+
+
 def solve_day():
-    print("=== Day 11 ===")
-    print("Part 1:", slv(25))
-    print("Part 2:", slv(75))
+    print("===== Day 11 =====")
+    print(f"Part 1: {part1()}")
+    print(f"Part 2: {part2()}")
 
 if __name__ == "__main__":
     solve_day()

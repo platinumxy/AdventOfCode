@@ -43,8 +43,16 @@ def x_masses(matrix: list[list[str]], i:int, j:int) -> int:
 def count_x_mas(matrix: list[list[str]]) -> int:
     return sum(x_masses(matrix, i, j) for i in range(len(matrix)) for j in range(len(matrix[0]))) // 2
 
+def part1() -> int:
+    return count_xmas(load_matrix())
+
+def part2() -> int:
+    return count_x_mas(load_matrix())
+
 def solve_day():
-    print("=== Day 4: ===\nPart One:", count_xmas(load_matrix()),"\nPart Two:", count_x_mas(load_matrix()))
+    print("===== Day 04: =====")
+    print(f"Part One: {part1()}")
+    print(f"Part Two: {part2()}")
 
 if __name__ == "__main__": 
     solve_day()

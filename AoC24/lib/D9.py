@@ -84,8 +84,6 @@ def de_frag(drive: list[int]) -> list[int]:
             return drive
         drive = tmp
         
-
-
 def part1() -> int:
     return sum_drive(sort_drive(gen_drive(*split_input(load_input()))))
 
@@ -93,9 +91,9 @@ def part2() -> int:
     return sum_drive(de_frag(gen_drive(*split_input(load_input()))))
 
 def solve_day() -> None:
-    print("=== Day 9 ===")
-    print("Part 1:", part1())
-    print("Part 2:", part2())
+    print("===== Day 09 =====")
+    print(f"Part 1: {part1()}")
+    print(f"Part 2: {part2()}")
 
 if __name__ == "__main__":
     solve_day()

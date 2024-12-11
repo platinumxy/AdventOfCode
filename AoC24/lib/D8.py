@@ -18,8 +18,11 @@ def gen_fequency_table(mx: np.ndarray) -> dict[str, set[tuple[int, int]]]:
 def cord_in_mx(mx: np.ndarray, y: int, x:int) -> bool:
     return 0 <= y < mx.shape[0] and 0 <= x < mx.shape[1]
 
-def part_1(mx: np.ndarray, fq_table: dict[str, set[tuple[int,int]]]) -> int:
+def part1() -> int:
     # I know this code wasnt the cleanest however I was CTFing all day and had to rush this
+    mx = load_matrix()
+    fq_table = gen_fequency_table(mx)
+
     anti_nodes = set()
     for cords in fq_table.values():
         if len(cords) == 1: continue
@@ -32,7 +35,9 @@ def part_1(mx: np.ndarray, fq_table: dict[str, set[tuple[int,int]]]) -> int:
                     anti_nodes.add((new_y, new_x))
     return len(anti_nodes)
 
-def part_2(mx: np.ndarray, fq_table: dict[str, set[tuple[int, int]]]) -> int:
+def part2() -> int:
+    mx = load_matrix()
+    fq_table = gen_fequency_table(mx)
     anti_nodes = set()
     for cords in fq_table.values():
         if len(cords) == 1:
@@ -49,11 +54,9 @@ def part_2(mx: np.ndarray, fq_table: dict[str, set[tuple[int, int]]]) -> int:
     return len(anti_nodes)
 
 def solve_day():
-    mx = load_matrix()
-    fq_table = gen_fequency_table(mx)
-    print("=== Day 8 ===")
-    print("Part 1:", part_1(mx, fq_table))
-    print("Part 2:", part_2(mx, fq_table))
+    print("===== Day 08 =====")
+    print(f"Part 1: {part1()}")
+    print(f"Part 2: {part2()}")
 
 if __name__ == "__main__":
     solve_day()

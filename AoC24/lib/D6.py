@@ -1,18 +1,16 @@
 import numpy as np
 
-gridT = np.ndarray
-
 GUARD_STATES = [ord('^'), ord('>'), ord('V'), ord('<')]
 
 def next_state(state):  
     return GUARD_STATES[(GUARD_STATES.index(state) + 1) % 4]
 
-def gen_grid() -> gridT:
+def gen_grid() -> np.ndarray:
     with open('./files/day6.txt') as f:
         lines = f.read().splitlines()
         return np.array([list(map(ord, line)) for line in lines])
 
-def get_guard(grid: gridT) -> tuple[int, int, int]:
+def get_guard(grid: np.ndarray) -> tuple[int, int, int]:
     for y in range(grid.shape[0]):
         for x in range(grid.shape[1]):
             if grid[y][x] in GUARD_STATES:
@@ -24,10 +22,10 @@ def next_pos(x: int, y: int, state: int) -> tuple[int, int]:
     if state == ord('V'): return x, y + 1
     if state == ord('>'): return x + 1, y
 
-def in_grid(x: int, y: int, grid: gridT) -> bool:
+def in_grid(x: int, y: int, grid: np.ndarray) -> bool:
     return 0 <= x < grid.shape[1] and 0 <= y < grid.shape[0]
 
-def try_move(x: int, y: int, state: int, grid: gridT) -> tuple[int, int, int]:
+def try_move(x: int, y: int, state: int, grid: np.ndarray) -> tuple[int, int, int]:
     while True: 
         nx, ny = next_pos(x, y, state)
         if not in_grid(nx, ny, grid): return nx, ny, state
@@ -35,7 +33,7 @@ def try_move(x: int, y: int, state: int, grid: gridT) -> tuple[int, int, int]:
             return nx, ny, state
         state = next_state(state)
 
-def move_guard(grid: gridT, x:int, y:int, state: int) -> tuple[gridT, bool, int, int, int]:
+def move_guard(grid: np.ndarray, x:int, y:int, state: int) -> tuple[np.ndarray, bool, int, int, int]:
     grid[y, x] = ord('X')
     nx, ny, state = try_move(x, y, state, grid)
     if in_grid(nx, ny, grid):
@@ -44,14 +42,19 @@ def move_guard(grid: gridT, x:int, y:int, state: int) -> tuple[gridT, bool, int,
         return grid, False, nx, ny, state
     return grid, True, nx, ny, state
 
-def part_1(grid: gridT) -> tuple[int, gridT]:
+def part1() -> tuple[int, np.ndarray]:
+    solved = solve_grid() 
+    return np.sum(solved == ord('X'))
+
+def solve_grid() -> np.ndarray:
+    grid = gen_grid()
     x, y, state = get_guard(grid)
     while True:
         grid, done, x, y, state = move_guard(grid, x, y, state)
         if done: break
-    return np.sum(grid == ord('X')), grid
+    return grid
 
-def part_2(grid: gridT, solved: gridT) -> int:
+def part2() -> int:
     def is_escapeable(gd, x:int, y:int, state:int) -> bool:
         seenpos = set()
         seenpos.add((x, y, state))
@@ -60,6 +63,9 @@ def part_2(grid: gridT, solved: gridT) -> int:
             if done: return True
             if (x, y, state) in seenpos: return False
             seenpos.add((x, y, state))
+    
+    grid = gen_grid()
+    solved = solve_grid()
             
     starting_x, starting_y, starting_state = get_guard(grid)
     to_try_block = {(x,y) for x in range(solved.shape[1]) for y in range(solved.shape[0]) if solved[y][x] == ord('X')}
@@ -73,10 +79,9 @@ def part_2(grid: gridT, solved: gridT) -> int:
     return loops
 
 def solve_day():
-    print("=== DAY 6 ===")
-    part1, solved = part_1(gen_grid())
-    print(f"Part 1: {part1}")
-    print(f"Part 2: {part_2(gen_grid(), solved)}")
+    print("===== DAY 06 =====")
+    print(f"Part 1: {part1()}")
+    print(f"Part 2: {part2()}")
 
 if __name__ == "__main__": 
     solve_day()

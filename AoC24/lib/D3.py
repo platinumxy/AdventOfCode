@@ -22,10 +22,10 @@ def get_all_controled_muls() -> list[tuple[int, int] | bool]:
             results.append(False)
     return results
         
-def get_all_muls_sum() -> int:
+def part1() -> int:
     return sum([l * r for (l, r) in get_all_muls()])
 
-def get_all_controled_muls_sum() -> int:
+def part2() -> int:
     muls = get_all_controled_muls()
     active = True
     sum = 0
@@ -41,7 +41,9 @@ def get_all_controled_muls_sum() -> int:
     return sum
 
 def solve_day():
-    print(f"=== Day three ===\nPart One: {get_all_muls_sum()}\nPart Two: {get_all_controled_muls_sum()}")
+    print(f"===== Day 03 =====")
+    print(f"Part One: {part1()}")
+    print(f"Part Two: {part2()}")
 
 if __name__ == "__main__": 
     solve_day()

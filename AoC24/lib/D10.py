@@ -51,17 +51,18 @@ def trail_perms(mx: np.ndarray, pos: tuple[int, int], trails: list[set[tuple[int
                     filter(lambda pos: pos in get_around(mx, *fnd[-1]), next_hight)], \
                     trails, [[pos]])
 
-def part1(top_map: np.ndarray) -> int:
+def part1() -> int:
+    top_map = load_input()
     return sum(map(lambda pos: trails_from_head(top_map, pos), find_trail_heads(top_map)))
 
-def part2(top_map) -> int:
+def part2() -> int:
+    top_map = load_input()
     return sum(len(trail_perms(top_map, heads, trail_steps(top_map, heads))) for heads in find_trail_heads(top_map))
 
 def solve_day():
-    top_map = load_input()
-    print("=== Day 10 ===")
-    print("Part 1:", part1(top_map))
-    print("Part 2:", part2(top_map))
+    print("===== Day 10 =====")
+    print(f"Part 1: {part1()}")
+    print(f"Part 2: {part2()}")
 
 if __name__ == "__main__":
     solve_day()
